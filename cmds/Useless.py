@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from .core.classes import Cog_Extension
-import json,asyncio
+import json,asyncio,random
 
 class Useless(Cog_Extension):
     
@@ -24,6 +24,10 @@ class Useless(Cog_Extension):
         await ctx.send(f'{ctx.message.author.mention}開始煮泡麵囉！')
         await asyncio.sleep(180)
         await ctx.send(f'{ctx.message.author.mention}泡麵煮好囉！')
+
+    @commands.command()
+    async def 說笑話(self,ctx):
+        await ctx.send('你')
 
 def setup(bot):
     bot.add_cog(Useless(bot))
