@@ -19,6 +19,11 @@ class Useless(Cog_Extension):
         await asyncio.sleep(10) #單位：秒
         await ctx.send("https://31.media.tumblr.com/tumblr_ma97m64In61rfpxhzo1_400.gif")
 
+    @commands.command()
+    async def 煮泡麵(self,ctx):
+        await ctx.send(f'{ctx.message.author.mention}開始煮泡麵囉！')
+        await asyncio.sleep(180)
+        await ctx.send(f'{ctx.message.author.mention}泡麵煮好囉！')
 
 def setup(bot):
     bot.add_cog(Useless(bot))

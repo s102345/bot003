@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 import os
 
-with open('D://Programming/Python Project/DiscordBot/bot003/setting.json','r',encoding='UTF8') as setting:
+with open('setting.json','r',encoding='UTF8') as setting:
     settingData=json.load(setting)
 
 bot = commands.Bot(command_prefix='!')
@@ -14,7 +14,7 @@ async def on_ready():
     await channel.send('引擎發動囉')
     
  
-for Filename in os.listdir('D:/Programming/Python Project/DiscordBot/bot003/cmds'):
+for Filename in os.listdir('./cmds'):
     if Filename.endswith('.py'):     
         if(Filename!='__init__.py'):
             bot.load_extension(f'cmds.{Filename[:-3]}')

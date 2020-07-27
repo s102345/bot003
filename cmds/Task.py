@@ -3,7 +3,7 @@ from discord.ext import commands
 from .core.classes import Cog_Extension
 import json,asyncio,datetime 
 
-with open('D://Programming/Python Project/DiscordBot/bot003/setting.json','r',encoding='UTF8') as setting:
+with open('./setting.json','r',encoding='UTF8') as setting:
     settingData=json.load(setting)
 
 class Task(Cog_Extension):
