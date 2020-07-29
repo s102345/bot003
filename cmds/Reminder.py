@@ -12,6 +12,7 @@ class Reminder(Cog_Extension):
 
     @commands.command()
     async def 提醒(self,ctx,year:int,month:int,day:int,hour:int,minute:int,msg:str):
+        #hour=(hour+8)%24
         try:
             datetime.date(year,month,day)
         except:
