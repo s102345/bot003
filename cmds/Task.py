@@ -29,7 +29,9 @@ class Task(Cog_Extension):
             with open('./data.json','r',encoding='UTF8') as jfile:
                 jdata = json.load(jfile)
             jfile.close()
-            now=datetime.datetime.now()
+            #td=datetime.timedelta(hours=-8) for repl.it
+            td=0
+            now=datetime.datetime.now()+td
             now_time=str(now.year)+'/'+str(now.month)+'/'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)
             await asyncio.sleep(1)
             data_end= len(jdata["Reminder"])
@@ -55,6 +57,8 @@ class Task(Cog_Extension):
 
         async def Krabby_Patty():
             #await self.bot.wait_until_ready()
+            #td=datetime.timedelta(hours=-8)
+            #now=datetime.datetime.now()+td
             self.channel=self.bot.get_channel(int(settingData['Main_Channel']))
             #while not self.bot.is_closed():
             if datetime.datetime.now().hour == 3 and not self.K_flag:
