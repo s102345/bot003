@@ -29,7 +29,7 @@ class Task(Cog_Extension):
             with open('./data.json','r',encoding='UTF8') as jfile:
                 jdata = json.load(jfile)
             jfile.close()
-            #td=datetime.timedelta(hours=-8) for repl.it
+            #td=datetime.timedelta(hours=8) for repl.it
             td=0
             now=datetime.datetime.now()+td
             now_time=str(now.year)+'/'+str(now.month)+'/'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)
@@ -57,7 +57,7 @@ class Task(Cog_Extension):
 
         async def Krabby_Patty():
             #await self.bot.wait_until_ready()
-            #td=datetime.timedelta(hours=-8)
+            #td=datetime.timedelta(hours=8)
             td=0
             now=datetime.datetime.now()+td
             self.channel=self.bot.get_channel(int(settingData['Main_Channel']))
