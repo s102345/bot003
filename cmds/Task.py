@@ -58,14 +58,15 @@ class Task(Cog_Extension):
         async def Krabby_Patty():
             #await self.bot.wait_until_ready()
             #td=datetime.timedelta(hours=-8)
-            #now=datetime.datetime.now()+td
+            td=0
+            now=datetime.datetime.now()+td
             self.channel=self.bot.get_channel(int(settingData['Main_Channel']))
             #while not self.bot.is_closed():
-            if datetime.datetime.now().hour == 3 and not self.K_flag:
+            if now.hour == 3 and not self.K_flag:
                 await self.channel.send('https://truth.bahamut.com.tw/s01/201602/5cbd45eb16e03c6382f96654bf2a570a.JPG')
                 self.K_flag=True
                 await asyncio.sleep(1)
-            elif datetime.datetime.now().hour != 3:
+            elif now.hour != 3:
                 self.K_flag=False
                 await asyncio.sleep(1)
                 pass 
