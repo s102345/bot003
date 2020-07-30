@@ -22,44 +22,58 @@ class Task(Cog_Extension):
             while not self.bot.is_closed():
                 await Krabby_Patty()
                 await asyncio.sleep(1)
+                await Update()
+                await asyncio.sleep(1)
                 await Remind()
                 await asyncio.sleep(1)
-        
-        async def Remind(): 
+
+        async def Update():
             with open('./data.json','r',encoding='UTF8') as jfile:
                 jdata = json.load(jfile)
-            jfile.close()
-            #td=datetime.timedelta(hours=8) for repl.it
-            td=0
+            with open('./data_buf.json','r',encoding='UTF8') as jfile:
+                jbuf=json.load(jfile)
+            Reminder=jdata['Reminder']
+            Reminder=Reminder+jbuf['Reminder']
+            jbuf['Reminder'].clear()
+            with open('./data_buf.json','w',encoding='UTF8') as jfile:
+                json.dump(jbuf,jfile,indent=4,ensure_ascii=False)
+            with open('./data.json','w',encoding='UTF8') as jfile:
+                json.dump(jdata,jfile,indent=4,ensure_ascii=False)
+
+        async def Remind(): 
+            td=datetime.timedelta(hours=0) 
             now=datetime.datetime.now()+td
+            with open('./data.json','r',encoding='UTF8') as jfile:
+                jdata = json.load(jfile)
             now_time=str(now.year)+'/'+str(now.month)+'/'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)
-            await asyncio.sleep(1)
             data_end= len(jdata["Reminder"])
             Reminder=jdata['Reminder']
+            self.del_num=-1
             if(data_end!=0):
                 for i in range(0,data_end):  
                     #print(Reminder[i]['Time'])                  
                     if(Reminder[i]['Time']==now_time):
                         self.channel=self.bot.get_channel(int(Reminder[i]['Channel']))
                         await self.channel.send(Reminder[i]["Mention"]+'該做'+Reminder[i]["Thing"]+'了')
-                        await asyncio.sleep(1)
-                        del Reminder[i]
-                        with open('./data.json','w',encoding='UTF8') as jfile:
-                            json.dump(jdata,jfile,indent=4,ensure_ascii=False)
-                        jfile.close()
+                        self.del_num=i
                         await asyncio.sleep(1)
                     else:
                         await asyncio.sleep(1)
-                        pass
+                        pass  
+                if self.del_num!=-1: 
+                    del Reminder[self.del_num]
+                    with open('./data.json','w',encoding='UTF8') as jfile:
+                        json.dump(jdata,jfile,indent=4,ensure_ascii=False)
+          
+                await asyncio.sleep(1)
             else:
                 await asyncio.sleep(1)
                 pass
 
         async def Krabby_Patty():
-            #await self.bot.wait_until_ready()
-            #td=datetime.timedelta(hours=8)
-            td=0
+            td=datetime.timedelta(hours=0)
             now=datetime.datetime.now()+td
+            #await self.bot.wait_until_ready()
             self.channel=self.bot.get_channel(int(settingData['Main_Channel']))
             #while not self.bot.is_closed():
             if now.hour == 3 and not self.K_flag:
