@@ -30,8 +30,8 @@ class Useless(Cog_Extension):
         await ctx.send('你')
 
     @commands.command()
-    async def 尬廣(self,ctx,* msg):
-        await ctx.message.clear()
+    async def 尬廣(self,ctx,*,msg):
+        await ctx.message.delete()
         await ctx.send(msg)
 
 def setup(bot):
