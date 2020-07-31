@@ -29,5 +29,10 @@ class Useless(Cog_Extension):
     async def 說笑話(self,ctx):
         await ctx.send('你')
 
+    @commands.command()
+    async def 尬廣(self,ctx,* msg):
+        await ctx.message.clear()
+        await ctx.send(msg)
+
 def setup(bot):
     bot.add_cog(Useless(bot))
