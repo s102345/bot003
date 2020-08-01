@@ -4,14 +4,9 @@ from .core.classes import Cog_Extension
 import json,datetime,asyncio
 
 class Reminder(Cog_Extension):
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)    
-        
-       
-        #self.bg_task = self.bot.loop.create_task(Remind())
-
+         
     @commands.command()
-    async def 提醒(self,ctx,year:int,month:int,day:int,hour:int,minute:int,msg:str):
+    async def 提醒(self,ctx,year:int,month:int,day:int,hour:int,minute:int,*,msg:str):
         #td=datetime.timedelta(hours=8)
         #now=datetime.datetime.now()+td
         try:
