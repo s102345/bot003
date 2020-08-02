@@ -48,23 +48,25 @@ class Task(Cog_Extension):
             now_time=str(now.year)+'/'+str(now.month)+'/'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)
             data_end= len(jdata["Reminder"])
             Reminder=jdata['Reminder']
-            self.del_num=-1
             if(data_end!=0):
                 for i in range(0,data_end):  
                     #print(Reminder[i]['Time'])                  
                     if(Reminder[i]['Time']==now_time):
                         self.channel=self.bot.get_channel(int(Reminder[i]['Channel']))
                         await self.channel.send(Reminder[i]["Mention"]+'該做'+Reminder[i]["Thing"]+'了')
-                        self.del_num=i
                         await asyncio.sleep(1)
                     else:
                         await asyncio.sleep(1)
                         pass  
-                if self.del_num!=-1: 
-                    del Reminder[self.del_num]
-                    with open('./data.json','w',encoding='UTF8') as jfile:
-                        json.dump(jdata,jfile,indent=4,ensure_ascii=False)
-          
+                Reminder_buf=[]
+                for i in Reminder:
+                    if(i['Time']!=now_time):
+                        Reminder_buf.append(i)
+                    else:
+                        pass 
+                jdata['Reminder']=Reminder_buf
+                with open('./data.json','w',encoding='UTF8') as jfile:
+                    json.dump(jdata,jfile,indent=4,ensure_ascii=False)
                 await asyncio.sleep(1)
             else:
                 await asyncio.sleep(1)
