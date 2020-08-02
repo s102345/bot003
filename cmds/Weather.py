@@ -55,6 +55,9 @@ class Weather(Cog_Extension):
             await ctx.send('暫時無法取得資料，請稍後再試') 
 #now =datetime.now()
 
+    @天氣.error
+    async def 天氣_error(self,ctx,error):
+        await ctx.send('請輸入正確的指令！\n指令：!天氣　<城市名>　(檢查臺字和縣市用詞是否有誤)')
 
     #中文字中文字中文字
 

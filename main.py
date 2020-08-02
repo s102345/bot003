@@ -18,7 +18,8 @@ for Filename in os.listdir('./cmds'):
     if Filename.endswith('.py'):     
         if(Filename!='__init__.py'):
             bot.load_extension(f'cmds.{Filename[:-3]}')
-        
+
+@commands.is_owner()
 @bot.command()
 async def load(ctx,extension):
     try:
@@ -27,7 +28,7 @@ async def load(ctx,extension):
     except:
         await ctx.send(f'{extension}無法被載入')
 
-
+@commands.is_owner()
 @bot.command()
 async def unload(ctx,extension):
     try:
@@ -36,6 +37,7 @@ async def unload(ctx,extension):
     except :
         await ctx.send(f'無法掛載{extension}')
 
+@commands.is_owner()
 @bot.command()
 async def reload(ctx,extension):
     try:

@@ -39,6 +39,9 @@ class Reminder(Cog_Extension):
                 jfile.close()
                 await ctx.send(ctx.message.author.mention+'已設置在'+time+'的提醒：'+msg)
 
+    @提醒.error
+    async def 提醒_error(self,ctx,error):
+        await ctx.send('請輸入正確的指令！\n指令：!提醒　<年>　<月>　<日>　<時>　<分>　<事件>')
 #中文中文中文
 
 def setup(bot):

@@ -13,7 +13,7 @@ class Event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_leave(self,member):
         channel = self.bot.get_channel(736604239081635911)
-        await channel.send(f'@{member.mention}高歌離席！')
+        await channel.send(f'{member.mention}高歌離席！')
 
 def setup(bot):
     bot.add_cog(Event(bot))

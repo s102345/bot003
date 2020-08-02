@@ -18,6 +18,13 @@ class Trigger(Cog_Extension):
             await msg.channel.send('嘛三小')
         if msg.content=='咩噗' and msg.author != self.bot.user:
             await msg.channel.send('https://media.discordapp.net/attachments/736482284508676178/738000488359919636/unknown.png')
+        
+        with open('./dict.json','r',encoding='UTF8') as jfile:
+            jdata=json.load(jfile)
+
+        if msg.content in jdata and msg.author != self.bot.user:
+            await msg.channel.send(jdata[msg.content])
+
 
 def setup(bot):
     bot.add_cog(Trigger(bot))
