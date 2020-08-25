@@ -38,7 +38,7 @@ class Useless(Cog_Extension):
     @commands.group()
     async def 語萱(self,ctx):
         pass
-    
+
     @語萱.command()
     async def 新增(self,ctx,key,*,value):
         with open('./dict.json','r',encoding='UTF8') as jfile:
@@ -55,11 +55,15 @@ class Useless(Cog_Extension):
         with open('./dict.json','r',encoding='UTF8') as jfile:
             jdata=json.load(jfile)
         jfile.close()
-        await ctx.send(f'關鍵字{key}刪除成功')
-        del jdata[f'{key}']
-        with open('./dict.json','w',encoding='UTF8') as jfile:
-            json.dump(jdata,jfile,indent=4,ensure_ascii=False)    
-        jfile.close()
+        if key in jdata:
+          await ctx.send(f'關鍵字{key}刪除成功')
+          del jdata[f'{key}']
+          with open('./dict.json','w',encoding='UTF8') as jfile:
+              json.dump(jdata,jfile,indent=4,ensure_ascii=False)    
+          jfile.close()
+        else:
+          await ctx.send("沒有該關鍵字")
+
 
     @新增.error
     async def 語萱_新增_error(self,ctx,error):
