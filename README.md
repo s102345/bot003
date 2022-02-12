@@ -1,2 +1,3 @@
 # bot003
-This is a discord bot
+一時興起寫的discord bot。  
+現已停機。  
